@@ -1,0 +1,13 @@
+<%# The "application" layout is the default layout. It extends "base"  %>
+<%# to include things like header, footer, and alerts that are common  %>
+<%# to most (but not all) views.                                       %>
+
+<main class="container">
+  <%= render("shared/flash") %>
+  <%= yield %>
+  <%# Next two lines were suggested by devise gem during setup: %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>~
+</main>
+
+<% parent_layout "base" %>

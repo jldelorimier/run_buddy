@@ -1,0 +1,24 @@
+<%# The "base" layout contains boilerplate common to *all* views. %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Run Buddy <%= Rails.application.config.version %> (<%= l(Rails.application.config.version_time) %>) -->
+    <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
+    <title>
+      <%= "#{strip_tags(yield(:title))} – " if content_for?(:title) %>
+      Run Buddy
+    </title>
+    <%# Specifies the default name of home screen bookmark in iOS %>
+    <meta name="apple-mobile-web-app-title" content="Run Buddy">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= yield(:head) %>  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
