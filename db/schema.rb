@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_22_024741) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_012229) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "runs", force: :cascade do |t|
-    t.time "start_time_beginning"
-    t.time "start_time_end"
     t.float "distance"
     t.integer "pace"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_time_beginning"
+    t.datetime "start_time_end"
     t.index ["user_id"], name: "index_runs_on_user_id"
   end
 

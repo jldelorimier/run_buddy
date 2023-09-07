@@ -1,0 +1,23 @@
+<%= form_with(model: @run, url: runs_path, method: :post) do |form| %>
+  <h5>
+    Start time
+    <br>
+    <br>
+    Between <%= form.datetime_local_field :start_time_beginning %>
+    <br>
+    and <%= form.datetime_local_field :start_time_end %>
+    <br>
+    <br>
+    Distance
+    <br>
+    <%= form.number_field :distance, step: '0.1' %> miles
+    <br>
+    <br>
+    Pace
+    <br>
+    <%= form.number_field :minutes %>min
+    <%= form.number_field :seconds %>sec
+  </h5>
+
+  <%= form.submit "Submit" %>
+<% end %>

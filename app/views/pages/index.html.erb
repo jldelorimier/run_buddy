@@ -4,6 +4,7 @@
 
 <% if user_signed_in? %>
   <h1>Welcome home, <%= current_user.email %> </h1>
+  <%= link_to "Find running buddy", new_run_path %>
   <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
 <% else %>
   <h1>Home, but actually the pages index page</h1>

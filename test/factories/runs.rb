@@ -5,8 +5,8 @@
 #  id                   :bigint           not null, primary key
 #  distance             :float
 #  pace                 :integer
-#  start_time_beginning :time
-#  start_time_end       :time
+#  start_time_beginning :datetime
+#  start_time_end       :datetime
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  user_id              :bigint           not null
