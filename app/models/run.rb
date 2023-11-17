@@ -22,8 +22,10 @@
 class Run < ApplicationRecord
   belongs_to :user
   validates :user, presence: true
+  has_many :matches, foreign_key: 'run1_id'
   # validate :run_cannot_start_in_the_past
   # validate :start_time_end_must_be_after_start_time_beginning
+  # Todo: create validation for distance cannot be negative
 
   # def run_cannot_start_in_the_past
   #   errors.add(:start_time_beginning, "Start time can't be in the past") if
@@ -38,3 +40,5 @@ class Run < ApplicationRecord
   # validates :start_time_end, comparison: { greater_than: :start_time_beginning, message: "Start time beginning must be before start time end" }
   # validates :start_time_beginning, comparison: { greater_than: :start_time_beginning, message: "Start time beginning must be before start time end" }
 end
+
+# start_time_beginning: 2023-08-25T17:40, start_time_end: 2023-08-26T17:40, distance: 4, minutes: 8, seconds: 15
