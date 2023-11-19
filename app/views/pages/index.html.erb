@@ -1,12 +1,23 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
-
+<p>Pages#index...Find me in app/views/pages/index.html.erb</p>
 
 <% if user_signed_in? %>
   <h1>Welcome home, <%= current_user.email %> </h1>
-  <%= link_to "Find running buddy", new_run_path %>
+  <%= link_to "Submit new run request", new_run_path %>
   <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+  <h3>Find a running buddy</h3>
+  <% if current_user.matches.present? %>
+    <ul>
+      <% current_user.matches.each do |match| %>
+        <li>
+          Match ID: <%= match.id %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No matches found</p>
+  <% end %>
 <% else %>
-  <h1>Home, but actually the pages index page</h1>
+  <p>Home, but actually the pages index page</p>
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
