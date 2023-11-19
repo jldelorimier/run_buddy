@@ -28,20 +28,21 @@ class RunsController < ApplicationController
   def find_and_create_matches(new_run)
     # distance_range = (0.8 * distance)..(1.2 * distance) # this creates an array of various distances. I don't want that.
     # pace_range = (pace - 30)..(pace + 30)
-    min_distance = 0.8 * distance
-    max_distance = 1.2 * distance
-    min_pace = pace - 30
-    max_pace = pace + 30
+    min_distance = 0.8 * new_run.distance
+    max_distance = 1.2 * new_run.distance
+    min_pace = new_run.pace - 30
+    max_pace = new_run.pace + 30
+
     similar_runs = Run.where(
       "distance >= ? AND distance <= ? AND pace >= ? AND pace <= ?", # Could also be written as `"distance BETWEEN ? AND ? AND pace BETWEEN ? AND ?",` ... remember, BETWEEN is inclusive of upper and lower bounds.
       min_distance, max_distance,
       min_pace, max_pace
-    ).where.not(id: id)
+    ).where.not(id: new_run.id)
 
     similar_runs.each do |run|
-      unless Match.exists?(run1: run, run2: new_run)
-        Match.create(run1: self, run2: run)
+      if new_run.user != run.user && !(Match.exists?(run1: run, run2: new_run)) # maybe I can get rid of the second check because the Match.create line should only be run when a new run is created... so it should be impossible for a Match record to already exist upon Run creation where run1 is the old run and run2 is the new_run... Also, maybe if I add a validation to check before run creation that the same User doesn't already have a Run record with overlapping start_time_beginning or start_time_end then I can remove the first if check too...
+        Match.create(run1: new_run, run2: run)
       end
     end
   end
-end
+end 
