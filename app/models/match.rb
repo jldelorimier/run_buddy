@@ -13,7 +13,7 @@ class Match < ApplicationRecord
   belongs_to :run2, class_name: 'Run' # , foreign_key: 'run2'
   
   # has_many :runs
-  # has_many :users, through: :runs
+  # has_many :users, through: :runs, source: :run1
 
   validates :run1, uniqueness: { scope: :run2 }
   validates :run2, uniqueness: { scope: :run1 }
