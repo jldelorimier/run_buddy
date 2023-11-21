@@ -21,8 +21,10 @@
 #
 class Run < ApplicationRecord
   belongs_to :user
+  has_many :match_run1, class_name: 'Match', foreign_key: 'run1_id'
+  has_many :match_run2, class_name: 'Match', foreign_key: 'run2_id'
+  
   validates :user, presence: true
-  has_many :matches, foreign_key: 'run1_id'
   # validate :run_cannot_start_in_the_past
   # validate :start_time_end_must_be_after_start_time_beginning
   # Todo: create validation for distance cannot be negative
