@@ -45,28 +45,4 @@ class RunsController < ApplicationController
       end
     end
   end
-
-  # below: experimental method that so far isn't helpful
-  # def matches(new_run)
-  #   min_distance = 0.8 * new_run.distance
-  #   max_distance = 1.2 * new_run.distance
-  #   min_pace = new_run.pace - 30
-  #   max_pace = new_run.pace + 30
-
-  #   similar_runs = Run.where(
-  #     "distance >= ? AND distance <= ? AND pace >= ? AND pace <= ?",
-  #     min_distance, max_distance,
-  #     min_pace, max_pace
-  #   ).where.not(id: new_run.id)
-
-  #   match_list = []
-
-  #   similar_runs.each do |run|
-  #     if new_run.user != run.user && !(Match.exists?(run1: run, run2: new_run)) 
-  #       match_list << run
-  #     end
-  #   end
-
-  #   match_list
-  # end
 end 

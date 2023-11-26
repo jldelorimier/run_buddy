@@ -10,7 +10,13 @@
     <ul>
       <% current_user.matches.each do |match| %>
         <li>
-          Match ID: <%= match.id %>
+          Match ID: <%= match.id %>, 
+          Run1 ID: <%= match.run1.id %>, 
+          Run1 user: <%= match.run1.user.email %>, 
+          Run2 ID: <%= match.run2.id %>
+          Run2 user: <%= match.run2.user.email %>, 
+          Run2 distance: <%= match.run2.distance %>, 
+          Run2 pace: <%= match.run2.pace %>, 
         </li>
       <% end %>
     </ul>
