@@ -21,9 +21,9 @@
 #
 class Run < ApplicationRecord
   belongs_to :user
-  belongs_to :matches
-  # has_many :matches, through: :runs, source: :run1
-  # has_many :matches, through: :runs, source: :run2
+  # belongs_to :matches
+  has_many :matches, through: :runs, source: :run1
+  has_many :matches, through: :runs, source: :run2
   # has_many :match_run1, class_name: 'Match', foreign_key: 'run1_id'
   # has_many :match_run2, class_name: 'Match', foreign_key: 'run2_id'
 

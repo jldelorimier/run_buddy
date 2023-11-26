@@ -21,6 +21,10 @@ class User < ApplicationRecord
   has_many :matches, through: :runs
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
+
+  def matches # I guess this method was key as well... I thought it would work through only an association, but I guess it just needed a method...?
+    Match.where(run1: runs.pluck(:id)).or(Match.where(run2: runs.pluck(:id)))
+  end
 end
 
 # has_many :matches, ->(user) { 
